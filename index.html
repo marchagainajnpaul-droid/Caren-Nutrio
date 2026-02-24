@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Caren-Nutrio</title>
+        <link rel="stylesheet"  href="style.css">
+        <link rel="stylesheet" href="icon/icon2/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        
+<button class="hbg" onclick="toggleSB()"><span></span><span></span><span></span></button>
+
+<div class="app-wrap">
+<!-- SIDEBAR  -->
+<div class="sidebar" id="sb">
+  <div class="sidebar-logo">
+    <div class="logo-mark">
+      <!-- 5 clics rapides → login admin. Aucun indicateur visible. -->
+      <div class="logo-icon" id="lt" onclick="sClick()"><i class="fa-solid fa-leaf" color="white"></i></div>
+      <div class="logo-text">Caren-Nutrio<span>Nutrition & Cognition</span></div>
+    </div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">Menu principal</div>
+    <button class="nav-item active" onclick="gp('accueil')"><span class="ni"><i class="fa-solid fa-house"></i></span>Accueil</button>
+    <button class="nav-item" onclick="gp('questionnaire')"><span class="ni"><i class="fa-solid fa-clipboard-question"></i></span>Questionnaire</button>
+    <button class="nav-item" onclick="gp('resultats')"><span class="ni"><i class="fa-solid fa-chart-column"></i></span>Mes résultats</button>
+    <button class="nav-item" onclick="gp('info')"><span class="ni"><i class="fa-solid fa-flask"></i></span>Nutriments</button>
+    <!-- SECTION ADMIN — invisible publiquement -->
+    <div id="adminNav">
+      <div class="nav-divider"></div>
+      <div class="nav-label">Administration <span class="rbadge">RESTREINT</span></div>
+      <button class="nav-item" onclick="gp('admin')"><span class="ni"><i class="fa-solid fa-gauge" color="yellow"></i></span>Dashboard admin</button>
+      <button class="nav-item" onclick="logout()" style="color:var(--red)"><span class="ni"><i class="fa-solid fa-right-from-bracket"></i></span>Déconnexion</button>
+    </div>
+  </div>
+  <div class="sidebar-footer">
+    <div class="user-chip">
+      <div class="user-avatar" id="uAv">E</div>
+      <div><div class="user-name" id="uNm">Étudiant</div><div class="user-role" id="uRl">Utilisateur</div></div>
+    </div>
+  </div>
+</div>
+
+<!--  OVERLAY LOGIN ADMIN  -->
+<div class="overlay" id="ov">
+  <div class="login-box">
+    <span class="lock"><i class="fa-solid fa-lock gold-icon"></i></span>
+    <h2>Espace administrateur</h2>
+    <p class="sub">Accès strictement réservé à la chercheuse principale</p>
+    <div class="lfield"><span class="fico">👤</span><input type="text" id="aU" placeholder="Identifiant" autocomplete="off" spellcheck="false"/></div>
+    <div class="lfield"><span class="fico"><i class="fa-solid fa-key" style="color:#D4AF37 ;"></i></span><input type="password" id="aP" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')doL()"/></div>
+    <div class="lerr" id="aE"></div>
+    <button class="btn btn-p" style="width:100%;justify-content:center;margin-bottom:8px" onclick="doL()">Connexion sécurisée</button>
+    <button class="btn btn-g" style="width:100%;justify-content:center" onclick="closeL()">Annuler</button>
+    <p class="lhint">Gaina Marcha JN PAUL — UNAH Génie Informatique 2026</p>
+  </div>
+</div>
+
+<!--  MAIN  -->
+<div class="main-content">
+
+<!-- ACCUEIL -->
+<div class="page active" id="page-accueil">
+  <div class="topbar">
+    <div><h1>Bienvenue <i class="fa-solid fa-leaf" color="green"></i></h1><p>Évaluation intelligente des carences nutritionnelles — Étudiants à rythme intensif</p></div>
+    <div class="tbr"><button class="btn btn-p" onclick="gp('questionnaire')">📋 Commencer</button></div>
+  </div>
+  <div class="stats-row">
+    <div class="sc"><div class="sc-top"><div class="sc-icon" style="background:var(--accent-light)">🧪</div><span class="sc-badge" style="background:var(--accent-light);color:var(--accent)">Actif</span></div><div class="sc-val" style="color:var(--accent)">4</div><div class="sc-lbl">Domaines analysés</div></div>
+    <div class="sc"><div class="sc-top"><div class="sc-icon" style="background:var(--blue-light)">🧠</div><span class="sc-badge" style="background:var(--blue-light);color:var(--blue)">Cognitif</span></div><div class="sc-val" style="color:var(--blue)">5</div><div class="sc-lbl">Nutriments surveillés</div></div>
+    <div class="sc"><div class="sc-top"><div class="sc-icon" style="background:var(--amber-light)">⏱️</div><span class="sc-badge" style="background:var(--amber-light);color:var(--amber)">Rapide</span></div><div class="sc-val" style="color:var(--amber)">&lt;8</div><div class="sc-lbl">Minutes d'évaluation</div></div>
+    <div class="sc"><div class="sc-top"><div class="sc-icon" style="background:var(--red-light)">🎯</div><span class="sc-badge" style="background:var(--red-light);color:var(--red)">Précis</span></div><div class="sc-val" style="color:var(--red)">4</div><div class="sc-lbl">Niveaux de risque</div></div>
+  </div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-hd"><span class="card-title">Comment ça fonctionne</span></div>
+      <div class="card-bd">
+        <div style="display:flex;flex-direction:column;gap:13px">
+          <div style="display:flex;gap:12px;align-items:flex-start"><div style="width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;flex-shrink:0">1</div><div><strong style="font-size:.87rem">Remplis le questionnaire</strong><br><span style="font-size:.77rem;color:var(--muted)">Habitudes alimentaires, sommeil, stress académique et charge horaire</span></div></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><div style="width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;flex-shrink:0">2</div><div><strong style="font-size:.87rem">L'algorithme analyse ton profil</strong><br><span style="font-size:.77rem;color:var(--muted)">Score multi-domaine : Nutrition 40% • Sommeil 25% • Stress 20% • Fatigue 15%</span></div></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><div style="width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;flex-shrink:0">3</div><div><strong style="font-size:.87rem">Reçois tes résultats personnalisés</strong><br><span style="font-size:.77rem;color:var(--muted)">Score de risque, carences identifiées et recommandations actionnables</span></div></div>
+        </div>
+        <div style="background:var(--red-light);border-left:3px solid var(--red);border-radius:8px;padding:11px 13px;margin-top:16px">
+          <p style="font-size:.75rem;color:var(--red);font-weight:700;margin-bottom:3px">⚠️ Avertissement médical</p>
+          <p style="font-size:.73rem;color:var(--text2)">Caren-Nutrio est un outil de prévention, <strong>non un diagnostic médical</strong>. En cas de symptômes, consultez un professionnel de santé.</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hd"><span class="card-title">Risques nutritionnels étudiants</span></div>
+      <div class="card-bd">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="bar-row"><div class="bar-hd"><span>🩸 Fer</span><span style="color:var(--red);font-size:.71rem">75% des étudiants</span></div><div class="bar-track"><div class="bar-fill" style="width:75%;background:var(--red)"></div></div></div>
+          <div class="bar-row"><div class="bar-hd"><span>☀️ Vitamine D</span><span style="color:var(--amber);font-size:.71rem">60% des étudiants</span></div><div class="bar-track"><div class="bar-fill" style="width:60%;background:var(--amber)"></div></div></div>
+          <div class="bar-row"><div class="bar-hd"><span>🧬 Vitamine B12</span><span style="color:var(--amber);font-size:.71rem">55% des étudiants</span></div><div class="bar-track"><div class="bar-fill" style="width:55%;background:var(--amber)"></div></div></div>
+          <div class="bar-row"><div class="bar-hd"><span>🌿 Magnésium</span><span style="color:var(--blue);font-size:.71rem">40% des étudiants</span></div><div class="bar-track"><div class="bar-fill" style="width:40%;background:var(--blue)"></div></div></div>
+          <div class="bar-row"><div class="bar-hd"><span>💪 Protéines</span><span style="color:var(--accent);font-size:.71rem">35% des étudiants</span></div><div class="bar-track"><div class="bar-fill" style="width:35%;background:var(--accent)"></div></div></div>
+        </div>
+        <p style="font-size:.69rem;color:var(--muted);margin-top:13px;font-style:italic">Source : Navarro-Cabrera et al. (2025) ; Qasrawi et al. (2024)</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUESTIONNAIRE -->
+<div class="page" id="page-questionnaire">
+  <div class="q-hd"><h2>Évaluation nutritionnelle</h2><p>Réponds honnêtement — pas de bonne ou mauvaise réponse.<br>Tes données sont anonymisées et sécurisées.</p></div>
+  <div class="prog-wrap">
+    <div class="prog-steps">
+      <div class="pline" id="pl" style="width:0%"></div>
+      <div class="pdot active" id="d1">1</div><div class="pdot" id="d2">2</div><div class="pdot" id="d3">3</div><div class="pdot" id="d4">4</div><div class="pdot" id="d5">5</div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:.66rem;color:var(--muted)"><span>Profil</span><span>Alimentation</span><span>Sommeil</span><span>Stress</span><span>Fatigue</span></div>
+  </div>
+  <div class="q-form">
+    <div class="qstep active" id="s1">
+      <div class="q-card"><h3>👤 Profil étudiant</h3>
+        <div class="q-grid">
+          <div class="qf"><label>Pseudonyme (facultatif)</label><input type="text" id="ps" placeholder="Ex: Etud_001"></div>
+          <div class="qf"><label>Tranche d'âge</label><select id="ag"><option value="">Sélectionner</option><option>18–20 ans</option><option>21–23 ans</option><option>24–26 ans</option><option>27–30 ans</option></select></div>
+          <div class="qf"><label>Sexe biologique</label><select id="sx"><option value="">Sélectionner</option><option>Masculin</option><option>Féminin</option><option>Préfère ne pas préciser</option></select></div>
+          <div class="qf"><label>Niveau d'études</label><select id="nv"><option value="">Sélectionner</option><option>Licence 1</option><option>Licence 2</option><option>Licence 3</option><option>Master</option><option>Préparation concours</option></select></div>
+        </div>
+      </div>
+      <div class="q-nav"><button class="btn btn-p" onclick="nx(1)">Suivant →</button></div>
+    </div>
+    <div class="qstep" id="s2">
+      <div class="q-card"><h3>🥗 Habitudes alimentaires</h3>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <div class="qf"><label>🩸 Aliments riches en Fer (légumineuses, viande, œufs) — fréquence hebdomadaire</label><select id="qF"><option value="">Sélectionner</option><option value="0">Jamais</option><option value="1">1 fois</option><option value="2">2–3 fois</option><option value="3">4–5 fois</option><option value="4">Presque tous les jours</option><option value="5">Tous les jours</option></select></div>
+          <div class="qf"><label>☀️ Vitamine D (poisson gras, œufs, exposition soleil)</label><select id="qD"><option value="">Sélectionner</option><option value="0">Jamais / Aucune exposition</option><option value="1">Rarement</option><option value="2">Parfois</option><option value="3">Souvent</option><option value="4">Très souvent</option><option value="5">Quotidiennement</option></select></div>
+          <div class="qf"><label>🧬 Vitamine B12 (viande, poisson, lait, œufs)</label><select id="qB"><option value="">Sélectionner</option><option value="0">Jamais</option><option value="1">1 fois/sem</option><option value="2">2–3 fois/sem</option><option value="3">4–5 fois/sem</option><option value="4">Presque tous les jours</option><option value="5">Tous les jours</option></select></div>
+          <div class="qf"><label>🌿 Magnésium (légumes verts, noix, cacao)</label><select id="qM"><option value="">Sélectionner</option><option value="0">Jamais</option><option value="1">Rarement</option><option value="2">Parfois</option><option value="3">Souvent</option><option value="4">Très souvent</option><option value="5">Quotidiennement</option></select></div>
+          <div class="qf"><label>🍽️ Nombre de repas réguliers par jour</label><select id="qR"><option value="">Sélectionner</option><option value="0">Je saute souvent tous mes repas</option><option value="1">1 repas/jour</option><option value="2">2 repas/jour</option><option value="3">3 repas ou plus/jour</option></select></div>
+        </div>
+      </div>
+      <div class="q-nav"><button class="btn btn-o" onclick="pv(2)">← Retour</button><button class="btn btn-p" onclick="nx(2)">Suivant →</button></div>
+    </div>
+    <div class="qstep" id="s3">
+      <div class="q-card"><h3>😴 Sommeil & Charge académique</h3>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <div class="qf"><label>Heures de sommeil par nuit en moyenne</label><select id="qS"><option value="">Sélectionner</option><option value="90">Plus de 7 h</option><option value="65">6 à 7 h</option><option value="40">5 à 6 h</option><option value="15">Moins de 5 h</option></select></div>
+          <div class="qf"><label>Qualité du sommeil ressentie</label><select id="qQ"><option value="">Sélectionner</option><option value="5">Très bonne</option><option value="4">Bonne</option><option value="3">Moyenne</option><option value="2">Mauvaise</option><option value="1">Très mauvaise</option></select></div>
+          <div class="qf"><label>Heures d'études par semaine (cours + révisions)</label><select id="qC"><option value="">Sélectionner</option><option value="10">Moins de 20 h</option><option value="30">20 à 35 h</option><option value="65">35 à 50 h</option><option value="95">Plus de 50 h</option></select></div>
+        </div>
+      </div>
+      <div class="q-nav"><button class="btn btn-o" onclick="pv(3)">← Retour</button><button class="btn btn-p" onclick="nx(3)">Suivant →</button></div>
+    </div>
+    <div class="qstep" id="s4">
+      <div class="q-card"><h3>😰 Stress académique</h3>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <div class="qf"><label>Niveau de stress académique actuel (1 = très faible / 5 = très élevé)</label><select id="qT"><option value="">Sélectionner</option><option value="1">1 — Très faible</option><option value="2">2 — Faible</option><option value="3">3 — Modéré</option><option value="4">4 — Élevé</option><option value="5">5 — Très élevé</option></select></div>
+          <div class="qf"><label>Consommation de caféine (café, thé, boissons énergisantes)</label><select id="qK"><option value="">Sélectionner</option><option value="0">Jamais</option><option value="1">Occasionnellement</option><option value="2">1 boisson/jour</option><option value="3">2–3 boissons/jour</option><option value="4">Plus de 3/jour</option></select></div>
+          <div class="qf"><label>En période d'examens, tu sautes des repas ?</label><select id="qX"><option value="">Sélectionner</option><option value="0">Jamais</option><option value="1">Rarement</option><option value="2">Parfois</option><option value="3">Souvent</option><option value="4">Presque toujours</option></select></div>
+        </div>
+      </div>
+      <div class="q-nav"><button class="btn btn-o" onclick="pv(4)">← Retour</button><button class="btn btn-p" onclick="nx(4)">Suivant →</button></div>
+    </div>
+    <div class="qstep" id="s5">
+      <div class="q-card"><h3>🧠 Fatigue cognitive</h3>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <div class="qf"><label>Niveau de fatigue générale (1 = aucune / 10 = épuisement total)</label><select id="qFt"><option value="">Sélectionner</option><option value="1">1 — En pleine forme</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5 — Fatigue modérée</option><option value="6">6</option><option value="7">7</option><option value="8">8 — Fatigue élevée</option><option value="9">9</option><option value="10">10 — Épuisement total</option></select></div>
+          <div class="qf"><label>Difficultés de concentration (plus de 30 min consécutives)</label><select id="qCo"><option value="">Sélectionner</option><option value="1">Jamais</option><option value="2">Rarement</option><option value="3">Parfois</option><option value="4">Souvent</option><option value="5">Très souvent</option></select></div>
+          <div class="qf"><label>Problèmes de mémoire récente</label><select id="qMm"><option value="">Sélectionner</option><option value="1">Jamais</option><option value="2">Rarement</option><option value="3">Parfois</option><option value="4">Souvent</option><option value="5">Très souvent</option></select></div>
+        </div>
+      </div>
+      <div class="q-nav"><button class="btn btn-o" onclick="pv(5)">← Retour</button><button class="btn btn-p" onclick="sub()">🔍 Analyser mon profil</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- RÉSULTATS -->
+<div class="page" id="page-resultats">
+  <div class="topbar"><div><h1>Mes résultats</h1><p>Analyse de votre profil nutritionnel</p></div><div class="tbr"><button class="btn btn-o btn-sm" onclick="gp('questionnaire')">📋 Nouvelle évaluation</button></div></div>
+  <div id="nres" style="text-align:center;padding:60px 20px"><div style="font-size:2.6rem;margin-bottom:12px">📊</div><p style="font-weight:600;margin-bottom:7px">Aucun résultat disponible</p><p style="font-size:.84rem;color:var(--muted)">Complète d'abord le questionnaire.</p><button class="btn btn-p" style="margin-top:16px" onclick="gp('questionnaire')">Commencer</button></div>
+  <div id="rcon" style="display:none">
+    <div class="res-hero" id="rh"><p style="font-size:.75rem;font-weight:600;opacity:.65;letter-spacing:.1em;text-transform:uppercase;margin-bottom:9px">Score de risque nutritionnel</p><div class="res-score" id="rsc">--</div><div class="res-lbl" id="rlb">--</div><div class="res-desc" id="rdsc">--</div></div>
+    <div class="c-cards" id="ccards"></div>
+    <div class="two-col">
+      <div class="card"><div class="card-hd"><span class="card-title">💡 Recommandations personnalisées</span></div><div class="card-bd"><ul class="recs" id="recsL"></ul></div></div>
+      <div class="card"><div class="card-hd"><span class="card-title">📈 Scores par domaine</span></div><div class="card-bd" id="domS"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- NUTRIMENTS -->
+<div class="page" id="page-info">
+  <div class="topbar"><div><h1>📚 Guide Nutriments</h1><p>Comprendre les carences et leurs effets sur la réussite académique</p></div></div>
+  <div class="info-grid">
+    <div class="ic"><div class="ic-top"><div class="ic-emoji">🩸</div><div><h3>Fer</h3><div class="ic-src">Carence la plus fréquente chez les étudiants</div></div></div><p>Le fer transporte l'oxygène vers le cerveau. Sa carence réduit les capacités intellectuelles, provoque fatigue chronique et difficultés de concentration.</p><div class="tr sym"><h5>⚠️ Symptômes</h5><span class="tag ts">Fatigue</span><span class="tag ts">Maux de tête</span><span class="tag ts">Pâleur</span><span class="tag ts">Trouble concentration</span></div><div class="tr ali" style="margin-top:7px"><h5>✅ Aliments</h5><span class="tag ta">Viande rouge</span><span class="tag ta">Légumineuses</span><span class="tag ta">Épinards</span><span class="tag ta">Œufs</span></div></div>
+    <div class="ic"><div class="ic-top"><div class="ic-emoji">☀️</div><div><h3>Vitamine D</h3><div class="ic-src">Associée à la vitesse de traitement cognitif</div></div></div><p>La vitamine D influence les fonctions cérébrales. Sa carence est liée à la dépression, la fatigue et la réduction de la vitesse de traitement cognitif.</p><div class="tr sym"><h5>⚠️ Symptômes</h5><span class="tag ts">Fatigue</span><span class="tag ts">Dépression</span><span class="tag ts">Faiblesse musculaire</span></div><div class="tr ali" style="margin-top:7px"><h5>✅ Aliments</h5><span class="tag ta">Poisson gras</span><span class="tag ta">Œufs</span><span class="tag ta">Soleil 15 min/j</span></div></div>
+    <div class="ic"><div class="ic-top"><div class="ic-emoji">🧬</div><div><h3>Vitamine B12</h3><div class="ic-src">Essentielle aux voies neuronales d'apprentissage</div></div></div><p>La B12 contribue aux voies neuronales impliquées dans l'apprentissage. Sa carence provoque fatigue mentale sévère et troubles mnésiques.</p><div class="tr sym"><h5>⚠️ Symptômes</h5><span class="tag ts">Fatigue mentale</span><span class="tag ts">Trouble mémoire</span><span class="tag ts">Fourmillements</span></div><div class="tr ali" style="margin-top:7px"><h5>✅ Aliments</h5><span class="tag ta">Viande</span><span class="tag ta">Poisson</span><span class="tag ta">Lait</span><span class="tag ta">Fromage</span></div></div>
+    <div class="ic"><div class="ic-top"><div class="ic-emoji">🌿</div><div><h3>Magnésium</h3><div class="ic-src">Épuisé par le stress académique chronique</div></div></div><p>Le stress chronique épuise le magnésium. Sa carence entraîne anxiété, palpitations et hyperémotivité — très fréquents en période d'examens.</p><div class="tr sym"><h5>⚠️ Symptômes</h5><span class="tag ts">Anxiété</span><span class="tag ts">Palpitations</span><span class="tag ts">Crampes</span></div><div class="tr ali" style="margin-top:7px"><h5>✅ Aliments</h5><span class="tag ta">Noix</span><span class="tag ta">Légumes verts</span><span class="tag ta">Cacao</span></div></div>
+    <div class="ic"><div class="ic-top"><div class="ic-emoji">💪</div><div><h3>Protéines</h3><div class="ic-src">Précurseurs des neurotransmetteurs</div></div></div><p>Les protéines produisent dopamine et sérotonine — essentielles à la motivation et la concentration. Leur manque crée fatigue mentale et démotivation.</p><div class="tr sym"><h5>⚠️ Symptômes</h5><span class="tag ts">Démotivation</span><span class="tag ts">Humeur instable</span><span class="tag ts">Fatigue</span></div><div class="tr ali" style="margin-top:7px"><h5>✅ Aliments</h5><span class="tag ta">Viande</span><span class="tag ta">Légumineuses</span><span class="tag ta">Œufs</span></div></div>
+    <div class="ic"><div class="ic-top"><div class="ic-emoji">🔬</div><div><h3>À propos</h3><div class="ic-src">Caren-Nutrio — UAH 2026</div></div></div><p>Système développé dans le cadre d'une recherche Design Science Research à l'Université Adventiste d'Haïti. Objectif : prévention des carences chez les étudiants intensifs.</p><div class="tr ali" style="margin-top:7px"><h5>📚 Références</h5><span class="tag ta">Pilato 2022</span><span class="tag ta">Verma 2025</span><span class="tag ta">Yuan 2025</span><span class="tag ta">Qasrawi 2024</span></div></div>
+  </div>
+</div>
+
+<!-- ADMIN (caché sans connexion) -->
+<div class="page" id="page-admin">
+  <div class="topbar"><div><h1>🔐 Dashboard Administration</h1><p>Espace réservé — Gaina Marcha JN PAUL</p></div><div class="tbr"><button class="btn btn-r btn-sm" onclick="logout()">🚪 Déconnexion</button></div></div>
+  <div class="adm-dash"><div class="adm-lbl">Statistiques — Phase pilote Caren-Nutrio</div>
+    <div class="adm-stats">
+      <div class="as"><div class="as-val" id="at">0</div><div class="as-lbl">Participants</div></div>
+      <div class="as"><div class="as-val" style="color:#ff8a80" id="ah">0</div><div class="as-lbl">Risque élevé</div></div>
+      <div class="as"><div class="as-val" style="color:#ffcc80" id="am">0</div><div class="as-lbl">Risque modéré</div></div>
+      <div class="as"><div class="as-val" style="color:#a5d6a7" id="ao">0</div><div class="as-lbl">Faible / Aucun</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd"><span class="card-title">Soumissions enregistrées</span><button class="btn btn-sm btn-o" onclick="exp()">📥 Export CSV</button></div>
+    <div class="card-bd" style="overflow-x:auto"><table><thead><tr><th>Pseudonyme</th><th>Niveau</th><th>Sexe</th><th>Score</th><th>Classe</th><th>Date</th></tr></thead><tbody id="atb"></tbody></table></div>
+  </div>
+</div>
+
+</div><!-- /main-content -->
+</div><!-- /app-wrap -->
+
+    <script src="script.js"></script>
+    </body>
+</html>
