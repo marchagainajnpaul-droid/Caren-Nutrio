@@ -77,7 +77,7 @@ Le dataset anonymise de la phase pilote est disponible
 **License donnees**
 
 ## Metriques de validation
-
+______________________________________________________________
 |   Metrique   |   Cible   |   baseline b1(naif)|Caren-Nutrio|
 |Precision     | >=80%     |a completer         |            |
 |(Accuracy)    |           |                    |            |
@@ -95,7 +95,9 @@ ______________________________________________________________
 -Ses resultats ne substituent pas a une consultation medicale professionnelle.
 - En cas de score de risque eleve,consultez un medecin ou un nutritionniste
 
-***Gaina Marcha JN PAUL *** 
+**Gaina Marcha JN PAUL ** 
 Univerite Adventiste d'Haiti
-
 Faculte de Genie et des Nouvelles Technologies
+Genie Informatique
+Recherche I
+
