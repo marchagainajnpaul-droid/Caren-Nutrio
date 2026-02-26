@@ -1,7 +1,7 @@
 # Caren-Nutrio
 
 
-## tirant du sujet 'Conception et implementation d'un systeme intelligent pour detecter les carences nutritionnelles chez les etudiants a rythme d'etudes intensif.
+## tirer du sujet 'Conception et implementation d'un systeme intelligent pour detecter les carences nutritionnelles chez les etudiants a rythme d'etudes intensif.
 
 
 ## Systeme intelligent qui fait la detection des carences nutritionnelles chez les etudiants a rythme d'etudes intensif
@@ -24,13 +24,14 @@ Le projet est un fichier HTML autonome
 
 ## Structure du depot
 caren-nutrio/
-|__ index.html
-|
+|__LICENSE
+|__README.md
+|__index.html
+|__script.js
+|__style.css
 
 ## Configuration Firebase 
 Sans Firebase, l'application fontionne entierement en local(localStorage).
-
-1.Creer un projet sur [Firebase console]()
 
 
 ## Algorithme de scoring 
@@ -70,11 +71,13 @@ _________________________________________________
 
 ## Donnees
 
-Le dataset anonymise de la phase pilote est disponible 
+Le dataset anonymise de la phase pilote est disponible dans
+`data/dataset_anonymise_v1.css`
 
-**Description des colonnes**
 
-**License donnees**
+##License donnees
+**code source**; GNU General Public License v3.0
+
 
 ## Metriques de validation
 ______________________________________________________________
@@ -100,4 +103,5 @@ Univerite Adventiste d'Haiti
 Faculte de Genie et des Nouvelles Technologies
 Genie Informatique
 Recherche I
+
 
